@@ -1,8 +1,15 @@
 const express = require('express');
-const { verifyGithubSignature } = require('../middlewares');
+const bodyParser = require("body-parser");
 const WebhookController = require('../controller/webhook');
+const { verifyGithubSignature } = require('../middlewares');
 
 const router = express.Router();
+
+router.use(bodyParser.json({
+  verify: (req, res, buf) => {
+    req.rawBody = buf.toString();
+  }
+}));
 
 router.post('/bot', async (req, res) => {
     if (!verifyGithubSignature(req)) {
