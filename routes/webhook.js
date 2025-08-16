@@ -10,7 +10,7 @@ router.post('/bot', async (req, res) => {
         const response = await WebhookController.runBotAppScript();
         console.log("Deploy success:", stdout);
     } catch (error) {
-        console.error("Deploy failed:", err);
+        console.error("Deploy failed:", error);
         res.status(error.status || 500).json(error);
     }
 });
