@@ -22,6 +22,7 @@ function verifyGithubSignature(req, res, next) {
 
     next();
 }
+
 module.exports = {
     verifyGithubSignature
 }

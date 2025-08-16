@@ -11,11 +11,7 @@ router.use(bodyParser.json({
   }
 }));
 
-router.post('/bot', async (req, res) => {
-    if (!verifyGithubSignature(req)) {
-        return res.status(401).json({ error: '❌ Invalid GitHub signature' });
-    }
-
+router.post('/bot', verifyGithubSignature, async (req, res) => {
     try {
         const response = await WebhookController.runBotAppScript();
         res.status(response.status).json(response);
