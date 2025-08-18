@@ -1,2 +1,4 @@
 node_modules/
 .env
+ci-bot.dev.sh
+ci-self.dev.sh
